@@ -1,6 +1,6 @@
 window.addEventListener('load',function(){
     rangeMusic.value = 0
-    displayAlert('Website thuộc bản quyền của Crodic Crystal. Vui Lòng không copy dưới mọi hình thức')
+    displayAlert('Website thuộc bản quyền của Crodic Crystal, vui Lòng không copy dưới mọi hình thức. Hiện web đang trong quá trình code nên chức năng còn hạn chế')
 })
 
 var play = document.querySelector('.control-music .play-pause')

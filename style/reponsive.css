@@ -13,6 +13,10 @@
     .main-logo{
         display: none;
     }
+    .main-logo img{
+        min-width: 227px;
+        max-width: 227px;
+    }
     .show{
         flex: 0 0 auto;
         width: 100%;
@@ -122,6 +126,15 @@
     .list-drop li:nth-child(n+5):not(.list-drop li:last-child){
         display: block;
     }
+    .box-item{
+        width: 45%;
+    }
+    .box-background h1{
+        font-size: x-large;
+    }
+    .box-item .absolute{
+        display: none;
+    }
 }
 /* Mobile With Large Screen */
 @media screen and (max-width: 746px) and (min-width:425px){
@@ -131,6 +144,10 @@
     }
     .main-logo{
         display: none;
+    }
+    .main-logo img{
+        min-width: 240px;
+        max-width: 240px;
     }
     .show{
         flex: 0 0 auto;

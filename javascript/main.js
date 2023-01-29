@@ -59,3 +59,42 @@ avatar.querySelector('.avatar img').addEventListener('click',function(){
         ShowDropDown = false
     }
 })
+
+
+//Change Background
+var changeBackground = document.querySelector('.box-background .close')
+var boxBackground = document.querySelector('.topic-background')
+var mobileBox = document.querySelector('.dropdown-item:nth-child(8)')
+var buttonShowBackground = document.querySelector('.notice i:last-child')
+
+changeBackground.addEventListener('click',function(){
+    boxBackground.style.display = 'none'
+})
+mobileBox.addEventListener('click',function(){
+    boxBackground.style.display = 'flex'
+})
+buttonShowBackground.addEventListener('click',function(){
+    boxBackground.style.display = 'flex'
+})
+
+var backgroundItemPC = document.querySelectorAll('.box-item .absolute')
+backgroundItemPC.forEach(function(item){
+    item.addEventListener('click',function(){
+        var parentNode = item.parentElement
+        var imgSrc = parentNode.querySelector('img').src
+        changeImagesBackground(imgSrc)
+    })
+})
+var backgroundItemMobile = document.querySelectorAll('.box-item img')
+backgroundItemMobile.forEach(function(item){
+    item.addEventListener('click',function(){
+        var parentNode = item.parentElement
+        var imgSrc = parentNode.querySelector('img').src
+        changeImagesBackground(imgSrc)
+    })
+})
+
+function changeImagesBackground(img){
+    var bodyBackground = document.querySelector('body')
+    bodyBackground.style.backgroundImage = `url(${img})`
+}
