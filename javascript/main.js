@@ -13,7 +13,7 @@ showHeader.addEventListener('click', function () {
         content.style.display = 'none'
         imgSub.style.display = 'none'
         imgMain.style.display = 'flex'
-        imgMain.querySelector('img').style.width = '80%'
+        imgMain.querySelector('img').style.width = '70%'
         infoList.forEach(function (item) {
             item.style.display = 'inline-block'
         })

@@ -754,3 +754,55 @@ list .disk{
             color-stop(0.72, rgb(73, 125, 189)),
             color-stop(0.86, rgb(28, 58, 148)));
 }
+
+.alert{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(54, 54, 54, 0.318);
+    z-index: 5;
+}
+.alert .notice-alert{
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    background-color: rgba(255, 255, 255, 0.351);
+    width: 400px;
+    margin: 0px 5px;
+    max-height:max-content;
+    overflow: hidden;
+}
+.header-alert{
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.5em;
+    border-bottom: 1px solid;
+    background-color: rgb(0, 55, 255);
+    text-shadow: 5px 0px 5px #000;
+}
+.content-alert{
+    padding: 0.5em;
+    border-bottom: 1px solid;
+    background-color: aliceblue;
+}
+.button-alert{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.3em;
+    background-color: aliceblue;
+}
+
+.button-alert .select{
+    border-radius: 10px;
+    padding: 0.3em;
+    cursor: pointer;
+    background-color: #271b395a;
+}
+.button-alert .select:hover{
+    background-color: #bebebe76;
+}
