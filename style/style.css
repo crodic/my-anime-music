@@ -2,17 +2,25 @@
 :root{
     --main-color: #000;
     --sub-color: #fff;
-    --button-color: blue;
+    --button-color: rgba(4, 4, 119, 0.596);
+    --button-active: rgba(1, 1, 44, 0.726);
+    --shadow-button: 0px 0px 15px #000, 0px 0px 20px #fff;
+    --active-color: rgb(243, 135, 135);
     --shadow-box: 0px 0px 15px white;
     --text-color: #f5f5f5;
-    --shadow-text: 0px 0px 10px #000;
-    --color-alpha: rgba(32, 31, 31, 0.144);
-    --active-color: red;
-    --bg-color: #bebebe;
-    --sub-bg-color: #4d4d4d;
+    --shadow-text: 0px 0px 20px #fff;
+    --bg-color: #bebebe52;
+    --sub-bg-color: #0a0a0a2a;
 }
 
 /* Reset CSS */
+body{
+    background-image: url(../images/backgorund2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
 *{
     margin: 0;
     padding: 0;
@@ -25,10 +33,10 @@ ul{
 .active-content_topic{
     display: block !important;
 }
-.active-topic{
-    background-color: #180b2b !important;
-    box-shadow: 0px 0px 20px rgb(96, 6, 99), 0px 0px 30px rgb(140, 0, 255) !important;
-    color: var(--active-color) !important;
+.topic ul li.active-topic{
+    background-color: var(--button-active);
+    box-shadow: var(--shadow-button);
+    color: var(--active-color);
 }
 .active-music{
     display: block !important;
@@ -54,10 +62,12 @@ ul.list li.active{
     max-width: 13em;
     min-width: 13em;
     max-height: 100vh;
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
+    background-color: var(--bg-color);
     display: flex;
     flex-direction: column;
     transition: all 0.5s linear;
+    border-right: 2px solid;
 }
 .main-logo,
 .sub-logo{
@@ -100,7 +110,7 @@ ul.list li.active{
     width: 90%;
     height: 2px;
     background-color: #000;
-    opacity: 0.2;
+    opacity: 0.5;
 }
 .sub-content{
     margin: 1em auto;
@@ -124,15 +134,17 @@ ul.list li.active{
 .sub-content::-webkit-scrollbar{
     width: 5px;
     display: none;
-    background-color: #F5F5F5;
+    background-color: var(--bg-color);
+    border-radius: 10px;
 }
 .sub-content::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    background-color: #F5F5F5;
+    background-color: var(--bg-color);
 }
 .sub-content::-webkit-scrollbar-thumb {
-    background-color: #000000;
-    border: 1px solid #555555;
+    background-color: #010a5db5;
+    border: 1px solid #010a5db5;
+    border-radius: 10px;
 }
 ul.list{
     width: 100%;
@@ -154,38 +166,47 @@ ul.list li:hover{
     margin: 10px auto;
     border-radius: 10px;
     background-color: var(--sub-bg-color);
+    background-image: linear-gradient(to right bottom , #000, rgb(3, 3, 149));
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.sale .description{
+.sale .description p{
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    color: white !important;
 }
 .sale .button{
     margin-top: 10px;
 }
 .button .vip-button{
     width: 100%;
-    padding: 5px;
+    padding: 10px 15px;
     border: 0px;
-    border-radius: 5px;
-    background-color: antiquewhite;
+    border-radius: 10px;
+    background-color: var(--button-color);
+    color: #fff;
     cursor: pointer;
+    transition: all 0.2s ease-in;
+    box-shadow: 0px 0px 15px white;
+}
+.button .vip-button:hover{
+    background-color: var(--button-active);
+    text-shadow: var(--shadow-text);
 }
 .play-list{
     flex: 0 0 auto;
     width: 100%;
     min-height: 4em;
     max-height: 4em;
-    background-color: aqua;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-top: 2px solid;
 }
 .show-header{
     display: none;
@@ -202,7 +223,8 @@ ul.list li:hover{
     flex: 1 1 auto;
     max-width: calc(100% - 13em);
     min-width: calc(100% - 13em);
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
+    background-color: var(--sub-bg-color);
     position: relative;
     transition: all 0.5s linear;
 }
@@ -212,11 +234,13 @@ ul.list li:hover{
     max-width: calc(100% - 13em);
     min-width: calc(100% - 13em);
     height: 4em;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
+    background-color: var(--sub-bg-color);
     transition: all 0.5s linear;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    border-bottom: 3px solid;
 }
 .sub-header form#search{
     flex: 1 1 auto;
@@ -231,12 +255,23 @@ form#search input{
     outline: 1px solid;
     border-radius: 10px;
     transition: width 0.5s ease;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+form#search input::placeholder{
+    color: var(--text-color);
+    font-weight: 800;
+}
+form#search input:focus{
+    background-color: var(--sub-bg-color);
+    box-shadow: var(--shadow-box);
 }
 form#search .search-button{
     position: absolute;
     top: 50%;
     left: calc(10px + 20px);
     transform: translateY(-50%);
+    color: var(--text-color);
 }
 
 /* Notice in Sub Header */
@@ -253,7 +288,7 @@ form#search .search-button{
     padding: 0.5em;
     border: 1px solid white;
     border-radius: 50%;
-    background-color: #34224f;
+    background-color: #000;
     color: white;
     transition: all 0.5s linear;
 }
@@ -302,7 +337,7 @@ form#search .search-button{
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    box-shadow: var(--color-shadow)
+    box-shadow: var(--shadow-box)
 }
 
 .avatar {
@@ -318,7 +353,7 @@ form#search .search-button{
     right: 1em;
     width: 16em;
     height: 15em;
-    background-color: whitesmoke;
+    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.9));
     border-radius: 10px;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -345,6 +380,7 @@ form#search .search-button{
     padding: 1em;
     border-bottom: 1px solid;
     cursor: pointer;
+    transition: all 0.5s linear;
 }
 .list-drop li:hover{
     background-color: #bebebe76;
@@ -363,15 +399,17 @@ form#search .search-button{
 }
 #content .main-content::-webkit-scrollbar{
     width: 8px;
-    background-color: #F5F5F5;
+    background-color: var(--bg-color);
+    border-radius: 10px;
 }
 #content .main-content::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    background-color: #F5F5F5;
+    background-color: var(--bg-color);
 }
 #content .main-content::-webkit-scrollbar-thumb {
-    background-color: #000000;
-    border: 1px solid #555555;
+    background-color: #010a5db5;
+    border: 1px solid #010a5db5;
+    border-radius: 10px;
 }
 
 /* Carousel in Content */
@@ -424,13 +462,14 @@ form#search .search-button{
     margin: 0.5em 0.6em 0em;
     padding: 0.5em;
     border-radius: 0.8em;
-    background-color: #2a213a;
+    /* background-color: #2a213a; */
+    background-color: var(--button-color);
     color: wheat;
 }
 .button-topic ul li:hover{
     box-shadow: 0px 0px 10px white, 0px 0px 15px whitesmoke;
-    background-color: #34224f;
-    color: #F5F5F5;
+    background-color: var(--button-active);
+    color: var(--active-color);
 }
 .content-topic{
     display: flex;
@@ -502,7 +541,7 @@ form#search .search-button{
     align-items: center;
     text-align: center;
     height: max-content;
-    background-color: rgba(94, 94, 96, 0.322);
+    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.7));
     box-shadow: 10px -10px 20px #000;
     border-top: 3px solid;
     position: fixed;
@@ -512,15 +551,12 @@ form#search .search-button{
     z-index: 30;
 }
 .system-play_music img{
-    width: 2em;
-    height: 2em;
+    width: 3em;
+    height: 3em;
     border-radius: 50%;
 }
 .active-rotate_img{
     animation: rotateImg 10s infinite linear;
-}
-.system-play_music > div{
-    flex: 1 1 25%;
 }
 .control-music{
     flex: 0 0 auto;
@@ -677,11 +713,18 @@ input[type=range]:focus::-ms-fill-upper {
 .img-music_control{
     flex: 0 0 auto;
     width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-weight: bold;
     color: white;
+    overflow: hidden;
+}
+.img-music_control img{
+    box-shadow: 0px 0px 20px #000;
+    border-radius: 50%;
+}
+.title-music{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
     overflow: hidden;
 }
 .img-music_control div{
@@ -699,10 +742,17 @@ input[type=range]:focus::-ms-fill-upper {
     display: none;
     flex-direction: column;
     width: 250px;
+    height: 20em;
     border-radius: 1em;
-    background-color: rgb(94, 94, 96);
+    background-image: url(../images/backgorund_list.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-origin: border-box;
+    /* background-image: linear-gradient(to top left, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.6)); */
     position: absolute;
-    top: -8em;
+    right: 10px;
+    top: -23em;
     bottom: 2em;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -715,7 +765,7 @@ input[type=range]:focus::-ms-fill-upper {
     text-transform: uppercase;
     font-weight: bold;
     text-shadow: 0px 0px 15px white, 0px 0px 20px whitesmoke;
-    background-color: #271b39;
+    background-color: var(--button-active);
 }
 .list-music .list list{
     cursor: pointer;
@@ -726,12 +776,21 @@ input[type=range]:focus::-ms-fill-upper {
     border-bottom: 1px solid;
     color: white;
     transition: all 0.5s linear;
+    background-color: var(--bg-color);
+    font-weight: bold;
 }
 list .disk{
     flex: 1 2 50%;
+    align-items: baseline;
+}
+.description span{
+    transition: all 1s ease-out;
 }
 .list-music .list list:hover{
-    background-color: #2a213a;
+    background-color: rgba(255, 255, 255, 0.382);
+}
+.list-music .list list:hover .description span{
+    color: var(--active-color);
 }
 .list-music .list::-webkit-scrollbar{
     display: none;
@@ -805,4 +864,42 @@ list .disk{
 }
 .button-alert .select:hover{
     background-color: #bebebe76;
+}
+
+
+
+
+
+
+
+/* Animation  */
+@keyframes rotateImg{
+    0%{
+        transform: rotate(0deg);
+        box-shadow: 0px 0px 20px peru;
+    }
+    20%{
+        transform: rotate(72deg);
+        box-shadow: 0px 0px 20px red;
+    }
+    40%{
+        transform: rotate(144deg);
+        box-shadow: 0px 0px 20px blue;
+    }
+    50%{
+        transform: rotate(180deg);
+        box-shadow: 0px 0px 20px yellow;
+    }
+    60%{
+        transform: rotate(216deg);
+        box-shadow: 0px 0px 20px green;
+    }
+    80%{
+        transform: rotate(288deg);
+        box-shadow: 0px 0px 20px orangered;
+    }
+    100%{
+        transform: rotate(360deg);
+        box-shadow: 0px 0px 20px purple;
+    }
 }
