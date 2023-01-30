@@ -611,8 +611,15 @@ function renderSearch (data){
         <div style='display: none;' data-music='${item.srcMusic}' data-avatar='${item.srcImg}'></div>
     </div>`
     })
-    var newData = renderHTML.join(' ')
-    modalSearch.innerHTML = newData
+    if(renderHTML.length == 0){
+        modalSearch.innerHTML = `<div class="item-search fail">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <p>Không tìm thấy kết quả</p>
+    </div>`
+    }else{
+        var newData = renderHTML.join(' ')
+        modalSearch.innerHTML = newData
+    }
 }
 
 searchInput.addEventListener('keyup',function(){

@@ -319,11 +319,19 @@ form#search input:focus {
     border-radius: 10px;
     color: var(--text-color);
 }
-
 .modal-search::-webkit-scrollbar {
     display: none;
 }
-
+.modal-search::after{
+    content: "Không tìm thấy kết quả";
+    display: none;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    min-height: 5em;
+    max-height: 5em;
+}
 .item-search {
     padding: 10px;
     display: flex;
@@ -332,8 +340,12 @@ form#search input:focus {
     transition: all 0.5s linear;
     cursor: pointer;
 }
-
-.item-search:hover {
+.fail{
+    cursor: no-drop;
+    color: red;
+    font-weight: bold;
+}
+.item-search:not(.fail):hover {
     background-color: var(--active-color);
 }
 
@@ -348,6 +360,7 @@ form#search input:focus {
     flex: 1 1 auto;
     width: calc(100% - 2em);
 }
+
 
 form#search .search-button {
     position: absolute;
