@@ -63,10 +63,16 @@ avatar.querySelector('.avatar img').addEventListener('click',function(){
 
 //Change Background
 var changeBackground = document.querySelector('.box-background .close')
+var contentBackground = document.querySelector('.box-background')
 var boxBackground = document.querySelector('.topic-background')
 var mobileBox = document.querySelector('.dropdown-item:nth-child(8)')
 var buttonShowBackground = document.querySelector('.notice i:last-child')
-
+boxBackground.addEventListener('click',function(e){
+    var box = e.target
+    if(!contentBackground.contains(box)){
+        changeBackground.click()
+    }
+})
 changeBackground.addEventListener('click',function(){
     boxBackground.style.display = 'none'
 })
@@ -82,7 +88,8 @@ backgroundItemPC.forEach(function(item){
     item.addEventListener('click',function(){
         var parentNode = item.parentElement
         var imgSrc = parentNode.querySelector('img').src
-        changeImagesBackground(imgSrc)
+        var listSrc = parentNode.querySelector('img').dataset.img
+        changeImagesBackground(imgSrc,listSrc)
     })
 })
 var backgroundItemMobile = document.querySelectorAll('.box-item img')
@@ -90,11 +97,14 @@ backgroundItemMobile.forEach(function(item){
     item.addEventListener('click',function(){
         var parentNode = item.parentElement
         var imgSrc = parentNode.querySelector('img').src
-        changeImagesBackground(imgSrc)
+        var listSrc = parentNode.querySelector('img').dataset.img
+        changeImagesBackground(imgSrc,listSrc)
     })
 })
 
-function changeImagesBackground(img){
+function changeImagesBackground(img,listImg){
     var bodyBackground = document.querySelector('body')
+    var listBackground = document.querySelector('.list-music .list')
     bodyBackground.style.backgroundImage = `url(${img})`
+    listBackground.style.backgroundImage = `url(${listImg})`
 }

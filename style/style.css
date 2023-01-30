@@ -257,6 +257,7 @@ form#search input{
     transition: width 0.5s ease;
     background-color: var(--bg-color);
     color: var(--text-color);
+    position: relative;
 }
 form#search input::placeholder{
     color: var(--text-color);
@@ -266,6 +267,47 @@ form#search input:focus{
     background-color: var(--sub-bg-color);
     box-shadow: var(--shadow-box);
 }
+.modal-search{
+    display: none;
+    position: absolute;
+    top: 3em;
+    left: 1em;
+    right: 14em;
+    max-height: 10em;
+    min-height: 5em;
+    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.9));
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex-direction: column;
+    box-shadow: var(--shadow-box);
+    border-radius: 10px;
+    color: var(--text-color);
+}
+.modal-search::-webkit-scrollbar{
+    display: none;
+}
+.item-search{
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transition: all 0.5s linear;
+    cursor: pointer;
+}
+.item-search:hover{
+    background-color: var(--active-color);
+}
+.item-search i{
+    flex: 0 0 auto;
+    min-width: 2em;
+    max-width: 2em;
+    font-size: 20px;
+}
+.item-search p{
+    flex: 1 1 auto;
+    width: calc(100% - 2em);
+}
+
 form#search .search-button{
     position: absolute;
     top: 50%;
@@ -570,6 +612,9 @@ form#search .search-button{
     align-items: center;
     flex-direction: column;
 }
+.control-music i{
+    cursor: pointer;
+}
 .button-control{
     display: flex;
     justify-content: center;
@@ -606,6 +651,8 @@ form#search .search-button{
 .range .ended{
     font-size: 12px;
     margin: 0 0.5em;
+    color: #fff;
+    font-weight: bold;
 }
 .range-control .range input{
     cursor: pointer;

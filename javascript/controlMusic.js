@@ -1,6 +1,15 @@
 window.addEventListener('load',function(){
     rangeMusic.value = 0
-    displayAlert('Website thuộc bản quyền của Crodic Crystal, vui Lòng không copy dưới mọi hình thức. Hiện web đang trong quá trình code nên chức năng còn hạn chế')
+    displayAlert('Website thuộc bản quyền của Crodic Crystal, vui Lòng không copy dưới mọi hình thức. Các chức năng hoạt động: Tìm kiếm thêm bài nhạc, click vào nhạc bên ngoài, play/pause/next/prev/random/infinity, chuyển bài bằng list Mini')
+})
+
+var alertBox = document.querySelector('.alert')
+var noticeAlert = document.querySelector('.notice-alert')
+alertBox.addEventListener('click',function(e){
+    var box = e.target
+    if(!noticeAlert.contains(box)){
+        alertBox.style.display = 'none'
+    }
 })
 
 var play = document.querySelector('.control-music .play-pause')
@@ -70,6 +79,7 @@ itemsPlay.forEach(function (items) {
 
                 checkActiveMusic(src) //Check Music on Active. If have is remove and add or dont have is add not remove 
 
+                //Đưa vào 1 Function
                 var playPromise = music.play()
                 if (playPromise !== undefined) {
                     playPromise.then(_ => {
@@ -90,7 +100,19 @@ itemsPlay.forEach(function (items) {
             isPlay = false
         }
         displayTimer()
-        playPauseMusic()
+        //Code cần tối ư. Đưa vào 1 function
+        var playPromise = music.play()
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                isPlay=false
+                playPauseMusic()
+                changeImgControl(dataImage)
+            })
+                .catch(error => {
+                    return
+                })
+        }
+        // playPauseMusic()
     })
 })
 
@@ -276,6 +298,7 @@ function displayAlert(notice){
     })
 }
 
+
 //Change Timer and Range Music
 var rangeMusic = document.querySelector('.range input')
 function displayTimer(){
@@ -327,5 +350,380 @@ volumeMusic.addEventListener('change',function(){
         changeIcon.classList.add('fa-volume-high')
     }else if (music.volume > 0.9){
         displayAlert('Nghe Nhạc với âm lượng cao sẽ ảnh hưởng tới thính giác của bạn. Hãy cân nhắc trước khi thực hiện hành động này')
+    }
+})
+
+
+
+// Search Data
+
+var dataSearch = [
+    {
+        topic: 'Sword Art Online',
+        srcMusic: './music/ANIMA.mp3',
+        srcImg: './images/kirito.jpg',
+        title: 'ANIMA',
+        voice: 'ReoNA'
+    },
+    {
+        topic: 'Sword Art Online',
+        srcMusic: './music/Courage.mp3',
+        srcImg: './images/asuna.jpg',
+        title: 'Courage',
+        voice: 'Haruka Tomatsu'
+    },
+    {
+        topic: 'Sword Art Online',
+        srcMusic: './music/Cynthia No Hikari.mp3',
+        srcImg: './images/CynthiaSong.jpg',
+        title: 'Cynthia No Hikari',
+        voice: 'Eri Aoi'
+    },
+    {
+        topic: 'Sword Art Online',
+        srcMusic: './music/ignite.mp3',
+        srcImg: './images/sinon.webp',
+        title: 'Ignite',
+        voice: 'Eri Aoi'
+    },
+    {
+        topic: 'Sword Art Online',
+        srcMusic: './music/resister.mp3',
+        srcImg: './images/eugeo.jpg',
+        title: 'Resister',
+        voice: 'Eri Aoi'
+    },
+    {
+        topic: 'Sword Art Online',
+        srcMusic: './music/SAO_OS.mp3',
+        srcImg: './images/SAO_OS.jpg',
+        title: 'Longing',
+        voice: 'Yuna (AI SAO)'
+    },
+    {
+        topic: 'Sword Art Online',
+        srcMusic: './music/SAO_UB.mp3',
+        srcImg: './images/SAO_UB.webp',
+        title: 'Gyakkyou Spectrum',
+        voice: 'ASCA'
+    },
+    {
+        topic: 'Sword Art Online',
+        srcMusic: './music/unlasting.mp3',
+        srcImg: './images/alice.jpg',
+        title: 'Unlasting',
+        voice: 'LiSA'
+    },
+    {
+        topic: 'Sword Art Online',
+        srcMusic: './music/VITA.mp3',
+        srcImg: './images/SAO_UB.webp',
+        title: 'VITA',
+        voice: 'ReoNA'
+    },
+    {
+        topic: 'Honkai',
+        srcMusic: './music/honkai.mp3',
+        srcImg: './images/honkai.jpg',
+        title: 'TRUE',
+        voice: 'Hoàng Linh'
+    },
+    {
+        topic: 'Honkai',
+        srcMusic: './music/Moon Halo.mp3',
+        srcImg: './images/kiana.png',
+        title: 'Moon Halo',
+        voice: 'Hanser'
+    },
+    {
+        topic: 'Honkai',
+        srcMusic: './music/honkai.mp3',
+        srcImg: './images/mobius.jpg',
+        title: 'Regression',
+        voice: 'Ayanga'
+    },
+    {
+        topic: 'Honkai',
+        srcMusic: './music/Rubia.mp3',
+        srcImg: './images/rubia.jpg',
+        title: 'Rubia',
+        voice: 'Châu Thâm'
+    },    
+    {
+        topic: 'Honkai',
+        srcMusic: './music/Reunio.mp3',
+        srcImg: './images/sivelWing.jpg',
+        title: 'Reunio',
+        voice: 'Trùng Phùng'
+    },
+    {
+        topic: 'Honkai',
+        srcMusic: './music/Dual-Ego.mp3',
+        srcImg: './images/raiden.jpg',
+        title: 'Dual Ego',
+        voice: 'Sa Dingding'
+    },
+    {
+        topic: 'Honkai',
+        srcMusic: './music/Starfall.mp3',
+        srcImg: './images/kevin.webp',
+        title: 'Star Fall',
+        voice: 'TIA RAY'
+    },
+    {
+        topic: 'Shadow Garden',
+        srcMusic: './music/shadow.mp3',
+        srcImg: './images/shadowgardenSong.jpg',
+        title: 'HIGHEST',
+        voice: 'OxT'
+    },
+    {
+        topic: '86',
+        srcMusic: './music/86.mp3',
+        srcImg: './images/86.webp',
+        title: 'Kyoukaisen',
+        voice: 'amazarashi'
+    },
+    {
+        topic: 'Counter Side',
+        srcMusic: './music/shadowofmemory.mp3',
+        srcImg: './images/shadowMemory.png',
+        title: 'Shadow Of Memory',
+        voice: 'Bside OST'
+    },
+    {
+        topic: 'Counter Side',
+        srcMusic: './music/redbreeze.mp3',
+        srcImg: './images/redBreezeSong.jpg',
+        title: 'Red Breeze',
+        voice: 'Nana Mizuki'
+    },
+    {
+        topic: 'Counter Side',
+        srcMusic: './music/Life Begins As Gone.mp3',
+        srcImg: './images/rising.jpg',
+        title: 'Life Begins As Gone',
+        voice: 'Game OST'
+    },
+    {
+        topic: 'Counter Side',
+        srcMusic: './music/House Of The Rising Sun.mp3',
+        srcImg: './images/house.jpg',
+        title: 'House Of The Rising Sun',
+        voice: 'Game OST'
+    },
+    {
+        topic: 'Azur Lane',
+        srcMusic: './music/graphite.mp3',
+        srcImg: './images/GraphiteSong.jpg',
+        title: 'Graphite/Diamond',
+        voice: 'May'
+    },
+    {
+        topic: 'Accel World',
+        srcMusic: './music/AccelWorld.mp3',
+        srcImg: './images/accelworld.jpg',
+        title: 'Unfinshes',
+        voice: 'Eir Aoi'
+    },
+    {
+        topic: 'Rewrite',
+        srcMusic: './music/phylosophy.mp3',
+        srcImg: './images/PhylosophySong.jpg',
+        title: 'Phylosophy',
+        voice: 'Game OST'
+    },
+    {
+        topic: 'Fate',
+        srcMusic: './music/Phantom Joke.mp3',
+        srcImg: './images/honkai.jpg',
+        title: 'Phantom Joke',
+        voice: 'Eir Aoi'
+    },
+    {
+        topic: 'Fate',
+        srcMusic: './music/Cosmos in the Losbelt Maaya Sakamoto.mp3',
+        srcImg: './images/cosmos.jpg',
+        title: 'Cosmos in the Losbelt',
+        voice: 'Maaya Sakamoto'
+    },
+    {
+        topic: 'King Raid',
+        srcMusic: './music/elipse.mp3',
+        srcImg: './images/eclipseSong.jpg',
+        title: 'Eclipse',
+        voice: 'DreamCath'
+    },
+    {
+        topic: 'Chaos Child',
+        srcMusic: './music/Chaochild.mp3',
+        srcImg: './images/chaochild.jpg',
+        title: 'Uncontrollable',
+        voice: 'いとうかなこ'
+    },
+    {
+        topic: 'Classroom of the elite',
+        srcMusic: './music/classroom.mp3',
+        srcImg: './images/classroom.jpg',
+        title: 'Dancing in the game',
+        voice: 'ZAQ'
+    },
+    {
+        topic: 'Honkai',
+        srcMusic: './music/Cyberangel.mp3',
+        srcImg: './images/cyber-honkai.jpg',
+        title: 'Cyberangel',
+        voice: 'Hanser'
+    },
+    {
+        topic: 'Fairy Tail',
+        srcMusic: './music/fairytail.mp3',
+        srcImg: './images/FairySong.jpg',
+        title: 'Ashita Wo Narase',
+        voice: 'Kavka Shishido'
+    },
+    {
+        topic: 'Naruto',
+        srcMusic: './music/naruto.mp3',
+        srcImg: './images/narutoSOng.jpg',
+        title: 'Opening 21',
+        voice: 'Kadokawa'
+    },
+    {
+        topic: 'One Piece',
+        srcMusic: './music/onepiece.mp3',
+        srcImg: './images/onePieceSong.jpg',
+        title: 'Fight Together',
+        voice: 'Kadokawa'
+    },
+
+]
+var searchInput = document.querySelector('form#search input')
+var modalSearch = document.querySelector('.modal-search') 
+
+function renderSearch (data){
+    var renderHTML = data.map(function(item){
+        return `<div class="item-search">
+        <i class="fa-brands fa-searchengin"></i>
+        <p>${item.title}</p>
+        <div style='display: none;' data-music='${item.srcMusic}' data-avatar='${item.srcImg}'></div>
+    </div>`
+    })
+    var newData = renderHTML.join(' ')
+    modalSearch.innerHTML = newData
+}
+
+searchInput.addEventListener('keyup',function(){
+    modalSearch.style.display = 'flex'
+    var data = dataSearch.filter(function(item){
+        var title = item.title.toUpperCase()
+        var searchValue = searchInput.value.toUpperCase()
+        if(searchInput.value == ''){
+            return false
+        }
+        if(!title.includes(searchValue)){
+            return false
+        }
+        return true
+    })
+    renderSearch(data)
+    var musicSearch = document.querySelectorAll('.modal-search .item-search')
+    
+    musicSearch.forEach(function(item){
+        item.addEventListener('click',function(){
+            var data = this.querySelector('div')
+            var dataTitle = this.querySelector('p').innerHTML
+            var dataMusic = data.dataset.music
+            var dataImage = data.dataset.avatar
+            var playListMusic = document.querySelector('.list-music .list')
+            var newMusicList = document.createElement('list')
+            newMusicList.innerHTML = `<div class="disk" style='display:flex;'>
+                                            <i class="fa-solid fa-compact-disc"></i>
+                                            <div class='description' style='margin-left:0.5em;'>
+                                                <span>${dataTitle}</span>
+                                            </div>
+                                        </div>
+                                        <div class="status" style='display:none;'>
+                                            <img src='./images/equalizer.gif' style='width: 100%;'>
+                                        </div>
+                                        <div class='music-source'>
+                                            <audio src='${dataMusic}'></audio>
+                                        </div>
+                                        <div class='display-img' style='display:none;'>
+                                            <img src='${dataImage}' class='change'>
+                                        </div>`
+            ;
+            var checkMusicInList = document.querySelectorAll('.list list') //Select tới nơi chứa từng list Music
+            for (var i = 0; i < checkMusicInList.length; i++) { //Duyệt qua từng Music trong list
+                var nameInList = document.querySelectorAll('list .disk .description span') //Lấy ra tên music
+                if (nameInList[i].innerHTML == dataTitle) { //So sánh tên Music với Music đang thêm vào. Nếu trùng thì phát lại và dừng chương trình
+                    displayAlert('Bài nhạc đã tồn tại trong play list. Không thể thêm được nữa !!!')
+                    isPlay=true
+                    playPauseMusic()
+                    return
+                }
+            }
+            checkActiveMusic(newMusicList)
+            playListMusic.append(newMusicList)
+
+            var playMusicInSystemAudio = document.querySelector('.control-music .music-source audio')
+            var playMusicInSystemImg = document.querySelector('.img-music_control img')
+            var playMusicInSystemTitle = document.querySelector('.img-music_control .title-music span')
+            playMusicInSystemImg.src = dataImage
+            playMusicInSystemAudio.src = dataMusic
+            playMusicInSystemTitle.innerHTML = dataTitle
+            var playPromise = music.play()
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    isPlay=false
+                    playPauseMusic()
+                    changeImgControl(dataImage)
+                })
+                    .catch(error => {
+                        return
+                    })
+            }
+
+            var listMusicAfterAdd = document.querySelectorAll('.list-music .list list')
+            indexMusic=listMusicAfterAdd.length-1
+            //Change music on List Mini
+            var srcInList = document.querySelectorAll('.list list')
+            srcInList.forEach(function(src,index) {
+                src.addEventListener('click', function () {
+                    var src1 = this.querySelector('audio')
+                    music.src = src1.src
+                    indexMusic=index
+    
+                    checkActiveMusic(src) //Check Music on Active. If have is remove and add or dont have is add not remove 
+    
+                    var playPromise = music.play()
+                    if (playPromise !== undefined) {
+                        playPromise.then(_ => {
+                            isPlay=false
+                            playPauseMusic()
+                            changeImgControl(src)
+                        })
+                            .catch(error => {
+                                return
+                            })
+                    }
+                })
+            })
+
+        })
+        if (isPlay == true) {
+            isPlay = false
+        }
+        displayTimer()
+        playPauseMusic()
+    })
+})
+
+var container = document.querySelector('#container')
+container.addEventListener('click',function(e){
+    var thisBox = e.target
+    if(!modalSearch.contains(thisBox)){
+        modalSearch.style.display = 'none'
+        searchInput.value = ''
     }
 })

@@ -135,6 +135,9 @@
     .box-item .absolute{
         display: none;
     }
+    .modal-search{
+        right: 1.5em;
+    }
 }
 /* Mobile With Large Screen */
 @media screen and (max-width: 746px) and (min-width:425px){
@@ -260,6 +263,10 @@
     .list-drop li:nth-child(n+5):not(.list-drop li:last-child){
         display: block;
     }
+    .modal-search{
+        right: 1em;
+        max-width: 25em;
+    }
 }
 
 
@@ -279,5 +286,12 @@
         bottom: 3.5em;
         top: -19em;
         width: 30em;
+    }
+    .modal-search{
+        right: 1em;
+        max-width: 25em;
+    }
+    .list-music .list{
+        top: -24em;
     }
 }
