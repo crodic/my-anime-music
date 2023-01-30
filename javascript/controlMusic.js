@@ -1,4 +1,6 @@
+var loading = document.querySelector('.loading')
 window.addEventListener('load',function(){
+    loading.style.display = 'none'
     rangeMusic.value = 0
     displayAlert('Website thuộc bản quyền của Crodic Crystal, vui Lòng không copy dưới mọi hình thức. Các chức năng hoạt động: Tìm kiếm thêm bài nhạc, click vào nhạc bên ngoài, play/pause/next/prev/random/infinity, chuyển bài bằng list Mini')
 })
