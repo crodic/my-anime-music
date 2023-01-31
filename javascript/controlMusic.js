@@ -67,7 +67,7 @@ itemsPlay.forEach(function (items) {
         }
         checkActiveMusic(newMusicList)
         listMusic.append(newMusicList)
-
+        
 
         var listMusicAfterAdd = document.querySelectorAll('.list-music .list list')
         indexMusic=listMusicAfterAdd.length-1
@@ -97,6 +97,7 @@ itemsPlay.forEach(function (items) {
         })
 
         // InfinityAndRepeart(listMusicAfterAdd)
+        
         //Change variable isPlay
         if (isPlay == true) {
             isPlay = false
@@ -114,7 +115,7 @@ itemsPlay.forEach(function (items) {
                     return
                 })
         }
-        // playPauseMusic()
+
     })
 })
 
@@ -209,6 +210,9 @@ function changeInfomationOnNextOrPrev(number){
     titleMusicInControler.innerHTML = titleMusicInList[number].innerHTML
 }
 function changeMusic(direction){
+    if(music.src == location.href){
+        return
+    }
     if(music.play()!==undefined){
         music.play().then(_=>{
             var arrayMusic = document.querySelectorAll('.list list .music-source audio')
@@ -257,6 +261,9 @@ isPlay = false
 play.addEventListener('click', playPauseMusic)
 
 function playPauseMusic() {
+    if(music.src == location.href){
+        return
+    }
     if (isPlay == false) {
         if (music.play() !== undefined) { //Nếu xác định bài nhạc để PLAY (Có src trong thẻ audio) 
             music.play().then(_ => {
@@ -354,7 +361,20 @@ volumeMusic.addEventListener('change',function(){
         displayAlert('Nghe Nhạc với âm lượng cao sẽ ảnh hưởng tới thính giác của bạn. Hãy cân nhắc trước khi thực hiện hành động này')
     }
 })
-
+//Delete Music
+var btnDelete = document.querySelector('.delete-music span')
+var imgMusicSystem = document.querySelector('.system-play_music img')
+var titleMusicSystem = document.querySelector('.system-play_music .title-music span')
+btnDelete.addEventListener('click',function(){
+    playPauseMusic()
+    var listMusicOnMini = document.querySelectorAll('.list list')
+    listMusicOnMini.forEach(function(music){
+        music.remove()
+    })
+    music.src = '' //src sẽ trả về link của chính trang web này
+    imgMusicSystem.src = './images/disk.png'
+    titleMusicSystem.innerText = "Chưa có Play List"
+})
 
 
 // Search Data
@@ -736,3 +756,5 @@ container.addEventListener('click',function(e){
         searchInput.value = ''
     }
 })
+
+

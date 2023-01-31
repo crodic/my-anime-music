@@ -920,7 +920,6 @@ input[type=range]:focus::-ms-fill-upper {
     background-repeat: no-repeat;
     background-size: cover;
     background-origin: border-box;
-    /* background-image: linear-gradient(to top left, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.6)); */
     position: absolute;
     right: 10px;
     top: -23em;
@@ -951,6 +950,48 @@ input[type=range]:focus::-ms-fill-upper {
     transition: all 0.5s linear;
     background-color: var(--bg-color);
     font-weight: bold;
+}
+.delete-music{
+    width: 10%;
+    overflow: hidden;
+    min-height: 2em;
+    max-height: 2em;
+    background-color: var(--button-color);
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.5s linear;
+}
+.delete-music span,
+.save-music span{
+    transition: all 0.5s linear;
+    transition-delay: 0.2s;
+}
+.delete-music:hover,
+.save-music:hover{
+    width: 100%;
+}
+.save-music{
+    width: 10%;
+    overflow: hidden;
+    min-height: 2em;
+    max-height: 2em;
+    background-color: var(--button-color);
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.5s linear;
+}
+.control-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 list .disk {

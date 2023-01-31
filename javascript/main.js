@@ -1,3 +1,4 @@
+
 // Control Client
 var isShow = false
 var showHeader = document.querySelector('.show-header')
@@ -108,3 +109,6 @@ function changeImagesBackground(img,listImg){
     bodyBackground.style.backgroundImage = `url(${img})`
     listBackground.style.backgroundImage = `url(${listImg})`
 }
+
+
+
