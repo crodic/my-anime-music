@@ -1215,6 +1215,7 @@ list .disk {
 }
 .AI:hover{
     background-color: var(--button-active);
+    opacity: 0.7;
 }
 
 /* Loading */
