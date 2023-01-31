@@ -29,6 +29,24 @@ function speak (text){
     aiSpeak.speak(utter)
 }
 
+window.addEventListener('load',function(){
+    function speak (text){
+        if(aiSpeak.speaking){
+            console.error('Busy')
+            return
+        }
+        var utter = new SpeechSynthesisUtterance(text)
+        utter.voice = voices[8]
+        utter.onend = () =>{
+            console.log('Kết thúc quá trình trả lời')
+        }
+        utter.onerror = (err)=>{
+            console.log(err)
+        }
+        aiSpeak.speak(utter)
+    }
+    speak('Hello Master. Welcome to website My Anime Music')
+})
 function voice(text){
 
     //Dừng nhạc
