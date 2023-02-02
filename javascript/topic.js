@@ -231,7 +231,7 @@ var dataSearchCollection = [
     {
         collection: './images/honkai.jpg',
         topic: 'King Raid',
-        srcMusic: './music/elipse.mp3',
+        srcMusic: './music/eclipse.mp3',
         srcImg: './images/eclipseSong.jpg',
         title: 'Eclipse',
         voice: 'DreamCath'

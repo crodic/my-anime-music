@@ -241,7 +241,7 @@ var dataSearchCollection = [
     {
         collection: './images/honkai.jpg',
         topic: 'King Raid',
-        srcMusic: './music/elipse.mp3',
+        srcMusic: './music/eclipse.mp3',
         srcImg: './images/EclipseSong.jpg',
         title: 'Eclipse',
         voice: 'DreamCath'
@@ -562,10 +562,15 @@ var render86 = dataSearchCollection.filter(function (collection) {
 
 var data6 = [renderFate, renderCounter, renderHonkai, render86, renderFairy, renderSAO]
 var renderResult = data6.map(function (item) {
+    console.log(item.length)
     return `<div class='collection-item'>
       <img src='${item[0].collection}'>
       <div class='click-me'>Thêm Danh Sách</div>
       <div class='data-collection' style='display:none;' data-collection='${item[0].topic}'></div>
+      <div class='name-playlist'>
+        <p> Anime: ${item[0].topic}</p>
+        <p> Số bài: <b style='color:red;'>${item.length}</b></p>
+      </div>
     </div>`
 })
 

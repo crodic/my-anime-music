@@ -1218,27 +1218,40 @@ list .disk {
     opacity: 0.7;
 }
 .carousel-collection .owl-carousel .owl-item{
-    box-shadow: 0px 15px 20px white;
+    border: 2px solid black;
 }
 
 .carousel-collection .owl-carousel .owl-item img{
     height: 10em;
     object-fit: cover;
     cursor: pointer;
+    border-bottom: 2px solid;
 }
 .carousel-collection .owl-carousel .owl-item .collection-item {
     position: relative;
 }
+.carousel-collection .owl-carousel .owl-item .collection-item p:last-child{
+    color: #000;
+}
+.carousel-collection .owl-carousel .owl-item .collection-item p:last-child::before{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin: 0.2em;
+    opacity: 0.5;
+    background-color: #000;
+}
 .carousel-collection .owl-carousel .owl-item .collection-item:hover .click-me{
-    height: 100%;
-    bottom: 0;
+    left: 0;
     color: red;
 }
 .carousel-collection .owl-carousel .owl-item .collection-item .click-me{
     position: absolute;
-    height: 3em;
+    top: 0;
     right: 0;
-    left: 0;
+    left: 100%;
+    bottom: 0;
     background-color: var(--bg-color);
     color: #fff;
     display: flex;
@@ -1248,6 +1261,12 @@ list .disk {
     overflow: hidden;
     cursor: pointer;
     transition: all 0.2s ease-in;
+}
+.name-playlist{
+    padding: 1em;
+    background-color:var(--sub-bg-color);
+    color: white;
+    font-weight: 700;
 }
 
 /* Loading */
