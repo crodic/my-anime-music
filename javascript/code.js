@@ -804,8 +804,6 @@ wrapperCollection.innerHTML = renderHTML
 var collectionList = document.querySelectorAll('.collection-item')
 collectionList.forEach(function (collect) {
     collect.addEventListener('click', function () {
-        music.load()
-        playPauseMusic()
         var dataCollection = this.querySelector('.data-collection').dataset.collection
         var find = dataSearchCollection.filter(function (list) {
             if (list.topic == dataCollection) {
@@ -829,12 +827,14 @@ collectionList.forEach(function (collect) {
         </div>
         <div class='display-img' style='display:none;'>
         <img src='${listItem.srcImg}' class='change'>
-        </div>
-        </list>`;
+        </div></list>`;
         })
+
         var finishRender = renderHTMLOnList.join(' ')
         var playList = document.querySelector('.list-music .list')
-        playList.innerHTML = finishRender
+        var crePlayList = document.createElement('div')
+        crePlayList.innerHTML = finishRender
+        playList.append(crePlayList)
         displayAlert(`Đã thêm Play List => ${dataCollection} <= vào danh sách phát. Vui lòng vào Danh sách kiểm tra`)
         changeMini()
         displayTimer()
