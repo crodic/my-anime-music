@@ -64,7 +64,7 @@ function voice(text){
             var prev = document.querySelector('.prev i')
             prev.click()
             speak('Đã lùi về bài nhạc trước đó trong danh sách')
-        }else if(makeText.includes('xoá danh sách')){
+        }else if(makeText.includes('xoá')){
             var btnDelete = document.querySelector('.delete-music span')
             btnDelete.click()
             speak('Đã xoá thành công. Việc xoá danh sách bằng AI có thể gây ra lỗi hệ thống nhưng không ảnh hưởng tới bạn')

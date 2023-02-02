@@ -11,7 +11,7 @@ arrayMonths.forEach(function(month,index){
     if(month<1){
         month = 12 + month
     }else{
-        month = 1
+        month = month
     }
     buttonMonths[index].innerHTML = month
 })

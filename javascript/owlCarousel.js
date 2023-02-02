@@ -1,3 +1,4 @@
+//Data Banner
 var data = [
   {
     id: 1,
@@ -25,6 +26,7 @@ var data = [
   },
 ];
 
+//Render Data Banner
 var renderData = data.map(function (item) {
   return `<div class="item">
     <img src="${item.images}" alt="">
@@ -34,17 +36,22 @@ var newData = renderData.join(" ");
 var wrapperData = document.querySelector(".carousel .owl-carousel");
 wrapperData.innerHTML = newData;
 
+
+
+
+// --------------------------------------------------------------------------------------------
+
 // Call Owl Carousel on Jquery
 $(document).ready(function () {
-  $(".owl-carousel").owlCarousel();
+  $(".carousel .owl-carousel").owlCarousel();
 });
 
 autoplay: false;
 autoplayTimeout: 5000;
 autoplayHoverPause: false;
 
-// Design Carousel
-var owl = $(".owl-carousel");
+// Design Carousel Banner
+var owl = $(".carousel .owl-carousel");
 owl.owlCarousel({
   loop: true,
   nav: true,
@@ -81,4 +88,30 @@ owl.on("mousewheel", ".owl-stage", function (e) {
 //Auto Play
 $(".play").on("click", function () {
   owl.trigger("play.owl.autoplay", [5000]);
+});
+
+
+
+
+//Design Carousel Collection
+var owlCollection = $(".carousel-collection .owl-carousel");
+owlCollection.owlCarousel({
+  loop: true,
+  nav: true,
+  margin: 10,
+  autoplay: true,
+  autoplayTimeout: 5000, //5 Second
+  autoplayHoverPause: true,
+  center: true,
+  responsive: {
+    0: {
+      items: 1,
+    },
+    960: {
+      items: 2,
+    },
+    1200: {
+      items: 4,
+    },
+  },
 });

@@ -1197,7 +1197,8 @@ list .disk {
     position: absolute;
     width: 3em;
     height: 3em;
-    background-color: var(--bg-color);
+    background-color: var(--button-active);
+    box-shadow: 0px 0px 15px #fff;
     color: var(--active-color);
     text-shadow: 0px 0px 15px red;
     cursor: pointer;
@@ -1210,15 +1211,55 @@ list .disk {
     font-size: 16px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    box-shadow: -10px 0px 25px #fff;
     z-index: 1000;
 }
 .AI:hover{
     background-color: var(--button-active);
     opacity: 0.7;
 }
+.carousel-collection .owl-carousel .owl-item{
+    box-shadow: 0px 15px 20px white;
+}
+
+.carousel-collection .owl-carousel .owl-item img{
+    height: 10em;
+    object-fit: cover;
+    cursor: pointer;
+}
+.carousel-collection .owl-carousel .owl-item .collection-item {
+    position: relative;
+}
+.carousel-collection .owl-carousel .owl-item .collection-item:hover .click-me{
+    height: 100%;
+    bottom: 0;
+    color: red;
+}
+.carousel-collection .owl-carousel .owl-item .collection-item .click-me{
+    position: absolute;
+    height: 3em;
+    right: 0;
+    left: 0;
+    background-color: var(--bg-color);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 2em;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+}
 
 /* Loading */
+.maintenance{
+    background-image: url(../images/maintance.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-clip: border-box;
+    color: red !important;
+}
 .loading{
     background-color: #000 !important;
     display: flex;
@@ -1259,33 +1300,7 @@ list .disk {
     -webkit-animation-timing-function: ease-out;
 }
 
-@-webkit-keyframes headAnim {
-    0% {
-        top: 0px;
-    }
 
-    50% {
-        top: 10px;
-    }
-
-    100% {
-        top: 0px;
-    }
-}
-
-@-webkit-keyframes bodyAnim {
-    0% {
-        top: -5px;
-    }
-
-    50% {
-        top: 10px;
-    }
-
-    100% {
-        top: -5px;
-    }
-}
 
 .circ {
     -webkit-backface-visibility: hidden;
@@ -1338,6 +1353,7 @@ list .disk {
     overflow: hidden;
 }
 
+/* Animation  */
 @-webkit-keyframes fontAnim {
     0% {
         width: 7ch;
@@ -1368,11 +1384,34 @@ list .disk {
     }
 }
 
+@-webkit-keyframes headAnim {
+    0% {
+        top: 0px;
+    }
 
+    50% {
+        top: 10px;
+    }
 
+    100% {
+        top: 0px;
+    }
+}
 
+@-webkit-keyframes bodyAnim {
+    0% {
+        top: -5px;
+    }
 
-/* Animation  */
+    50% {
+        top: 10px;
+    }
+
+    100% {
+        top: -5px;
+    }
+}
+
 @keyframes rotateImg {
     0% {
         transform: rotate(0deg);
