@@ -242,7 +242,7 @@ var dataSearchCollection = [
         collection: './images/honkai.jpg',
         topic: 'King Raid',
         srcMusic: './music/elipse.mp3',
-        srcImg: './images/eclipseSong.jpg',
+        srcImg: './images/EclipseSong.jpg',
         title: 'Eclipse',
         voice: 'DreamCath'
     },
@@ -282,7 +282,7 @@ var dataSearchCollection = [
         collection: './images/honkai.jpg',
         topic: 'Naruto',
         srcMusic: './music/naruto.mp3',
-        srcImg: './images/narutoSOng.jpg',
+        srcImg: './images/narutoSong.jpg',
         title: 'Opening 21',
         voice: 'Kadokawa'
     },
