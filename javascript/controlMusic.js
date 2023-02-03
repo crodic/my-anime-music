@@ -179,11 +179,6 @@ function endedSong(){
 }
 
 
-
-
-
-
-
 //Funtion changeImg
 function changeImgControl(musicSrc) {
     var imgMusic = document.querySelector('.img-music_control img')

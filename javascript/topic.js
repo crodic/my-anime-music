@@ -39,7 +39,7 @@ var dataSearchCollection = [
     {
         collection: './images/collectionSAO.jpg',
         topic: 'Sword Art Online',
-        srcMusic: './music/ignite.mp3',
+        srcMusic: './music/Ignite.mp3',
         srcImg: './images/sinon.webp',
         title: 'Ignite',
         voice: 'Eir Aoi'
@@ -71,7 +71,7 @@ var dataSearchCollection = [
     {
         collection: './images/collectionSAO.jpg',
         topic: 'Sword Art Online',
-        srcMusic: './music/unlasting.mp3',
+        srcMusic: './music/Unlasting.mp3',
         srcImg: './images/alice.jpg',
         title: 'Unlasting',
         voice: 'LiSA'
@@ -232,7 +232,7 @@ var dataSearchCollection = [
         collection: './images/honkai.jpg',
         topic: 'King Raid',
         srcMusic: './music/eclipse.mp3',
-        srcImg: './images/eclipseSong.jpg',
+        srcImg: './images/EclipseSong.jpg',
         title: 'Eclipse',
         voice: 'DreamCath'
     },
@@ -272,7 +272,7 @@ var dataSearchCollection = [
         collection: './images/honkai.jpg',
         topic: 'Naruto',
         srcMusic: './music/naruto.mp3',
-        srcImg: './images/narutoSOng.jpg',
+        srcImg: './images/narutoSong.jpg',
         title: 'Opening 21',
         voice: 'Kadokawa'
     },

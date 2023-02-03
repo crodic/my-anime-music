@@ -67,7 +67,7 @@ var dataSearchCollection = [
     {
         collection: './images/collectionSAO.jpg',
         topic: 'Sword Art Online',
-        srcMusic: './music/ignite.mp3',
+        srcMusic: './music/Ignite.mp3',
         srcImg: './images/sinon.webp',
         title: 'Ignite',
         voice: 'Eri Aoi'
@@ -99,7 +99,7 @@ var dataSearchCollection = [
     {
         collection: './images/collectionSAO.jpg',
         topic: 'Sword Art Online',
-        srcMusic: './music/unlasting.mp3',
+        srcMusic: './music/Unlasting.mp3',
         srcImg: './images/alice.jpg',
         title: 'Unlasting',
         voice: 'LiSA'
