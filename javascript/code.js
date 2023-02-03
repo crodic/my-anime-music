@@ -593,7 +593,13 @@ collectionList.forEach(function (collect) {
         </div>
         </div>
         <div class="status" style='display:none;'>
-        <img src='./images/equalizer.gif' style='width: 100%;'>
+        <section>
+            <div class="loader loader-7">
+            <div class="line line1"></div>
+            <div class="line line2"></div>
+            <div class="line line3"></div>
+            </div>
+        </section>
         </div>
         <div class='music-source'>
         <audio src='${listItem.srcMusic}'></audio>
