@@ -14,8 +14,6 @@ window.addEventListener('load', function () {
         var newMusicList = document.createElement('list')
         var playListMusic = document.querySelector('.list-music .list')
         newMusicList.innerHTML = renderList(titleLocal, musicLocal, img)
-
-        checkActiveMusic(newMusicList)
         playListMusic.append(newMusicList)
         changeMini()
     })
@@ -721,7 +719,13 @@ function renderList(name, music, img) {
     </div>
     </div>
     <div class="status" style='display:none;'>
-    <img src='./images/equalizer.gif' style='width: 100%;'>
+        <section>
+        <div class="loader loader-7">
+        <div class="line line1"></div>
+        <div class="line line2"></div>
+        <div class="line line3"></div>
+        </div>
+        </section>
     </div>
     <div class='music-source'>
     <audio src='${music}'></audio>
