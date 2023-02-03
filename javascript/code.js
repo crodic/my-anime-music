@@ -1,7 +1,25 @@
 var loading = document.querySelector('.loading')
+var local = JSON.parse(localStorage.getItem('PLAY_LIST'))
+if(local == null){
+    local = []
+}
 window.addEventListener('load', function () {
     loading.style.display = 'none'
     rangeMusic.value = 0
+
+    local.forEach(function(item){
+        var img = item.srcImg
+        var musicLocal = item.srcMusic
+        var titleLocal = item.title
+        var newMusicList = document.createElement('list')
+        var playListMusic = document.querySelector('.list-music .list')
+        newMusicList.innerHTML = renderList(titleLocal, musicLocal, img)
+
+        checkActiveMusic(newMusicList)
+        playListMusic.append(newMusicList)
+        changeMini()
+    })
+    setCount()
     displayAlert('Website thuộc bản quyền của Crodic Crystal. Do AI làm cho website load rất chậm nên tạm thời sẽ đóng lại để update thêm')
 })
 
@@ -151,7 +169,7 @@ var dataSearchCollection = [
         voice: 'TIA RAY'
     },
     {
-        collection: './images/honkai.jpg',
+        collection: './images/shadowgardenSong.jpg',
         topic: 'Shadow Garden',
         srcMusic: './music/shadow.mp3',
         srcImg: './images/shadowgardenSong.jpg',
@@ -423,20 +441,32 @@ volumeMusic.addEventListener('change', function () {
 })
 
 //Delete Music
+var count
 var btnDelete = document.querySelector('.delete-music span')
 var imgMusicSystem = document.querySelector('.system-play_music img')
 var titleMusicSystem = document.querySelector('.system-play_music .title-music span')
 btnDelete.addEventListener('click', function () {
+    count = 0
     playPauseMusic()
     var listMusicOnMini = document.querySelectorAll('.list list')
     listMusicOnMini.forEach(function (music) {
         music.remove()
     })
-    music.src = '' //src sẽ trả về link của chính trang web này
+    if(music.play()!==undefined){
+        music.play().then(_ =>{
+            music.removeAttribute('src')
+            music.src = '' //src sẽ trả về link của chính trang web này
+        })
+        .catch(err=>{
+            return
+        })
+    }
     imgMusicSystem.src = './images/disk.png'
     imgMusicSystem.classList.remove('active-rotate-img')
     titleMusicSystem.innerText = "Chưa có Play List"
     rangeMusic.value = 0
+    localStorage.removeItem('PLAY_LIST')
+    local = []
     displayTimer()
 })
 
@@ -515,54 +545,20 @@ container.addEventListener('click', function (e) {
     }
 })
 
+var dataCollectionRender = []
+
+var renderHonkai = renderCollection(dataSearchCollection,'Honkai')
+var renderSAO = renderCollection(dataSearchCollection,'Sword Art Online')
+var renderCounter = renderCollection(dataSearchCollection,'Counter Side')
+var renderFate = renderCollection(dataSearchCollection,'Fate')
+var renderFairy = renderCollection(dataSearchCollection,'Fairy Tail')
+var render86 = renderCollection(dataSearchCollection,'86')
+var renderShadow = renderCollection(dataSearchCollection,'Shadow Garden')
 
 
-var renderSAO = dataSearchCollection.filter(function (collection) {
-    if (collection.topic == 'Sword Art Online') {
-        return true
-    } else {
-        return false
-    }
-})
-var renderHonkai = dataSearchCollection.filter(function (collection) {
-    if (collection.topic == 'Honkai') {
-        return true
-    } else {
-        return false
-    }
-})
-var renderCounter = dataSearchCollection.filter(function (collection) {
-    if (collection.topic == 'Counter Side') {
-        return true
-    } else {
-        return false
-    }
-})
-var renderFate = dataSearchCollection.filter(function (collection) {
-    if (collection.topic == 'Fate') {
-        return true
-    } else {
-        return false
-    }
-})
-var renderFairy = dataSearchCollection.filter(function (collection) {
-    if (collection.topic == 'Fairy Tail') {
-        return true
-    } else {
-        return false
-    }
-})
-var render86 = dataSearchCollection.filter(function (collection) {
-    if (collection.topic == '86') {
-        return true
-    } else {
-        return false
-    }
-})
 
-var data6 = [renderFate, renderCounter, renderHonkai, render86, renderFairy, renderSAO]
-var renderResult = data6.map(function (item) {
-    console.log(item.length)
+
+var renderResult = dataCollectionRender.map(function (item) {
     return `<div class='collection-item'>
       <img src='${item[0].collection}'>
       <div class='click-me'>Thêm Danh Sách</div>
@@ -579,7 +575,7 @@ var wrapperCollection = document.querySelector('.collection .owl-carousel')
 wrapperCollection.innerHTML = renderHTML
 
 
-
+//Render Play List in Mini List
 var collectionList = document.querySelectorAll('.collection-item')
 collectionList.forEach(function (collect) {
     collect.addEventListener('click', function () {
@@ -626,7 +622,63 @@ collectionList.forEach(function (collect) {
 
 
 
+//Save list on Localstorage
+
+var save = document.querySelector('.save-music span')
+
+save.addEventListener('click',function(){
+    if(count>0){
+        displayAlert('Vui Lòng Reset lại PlayList trước khi thêm bài hát mới')
+        return
+    }else{
+        var listMusicHaveAdd = document.querySelectorAll('.list-music .list list')
+        if(listMusicHaveAdd.length > 0){
+            count ++
+            listMusicHaveAdd.forEach(function(item){
+                var localImg = item.querySelector('.display-img img').src
+                var localMusic = item.querySelector('.music-source audio').src
+                var localTitle = item.querySelector('.disk .description span').innerHTML
+                
+                var dataLocal = {
+                    srcImg: localImg,
+                    srcMusic: localMusic,
+                    title: localTitle
+                }
+                local.push(dataLocal)
+                localStorage.setItem('PLAY_LIST',JSON.stringify(local))
+            })
+            displayAlert('Bạn đã ghi nhớ Play List. Lần vào web tiếp theo Play List sẽ tự động thêm vào danh sách')
+        }else{
+            displayAlert('Play List đang trống. Không thể thêm')
+            return
+        }
+    }
+})
+
+
+
 //CallBack funtion:
+
+function setCount (){
+    var checkList = document.querySelectorAll('.list-music .list list')
+    if(checkList.length == 0){
+        count = 0
+    }else{
+        count = 1
+    }
+}
+
+//Render Collection
+function renderCollection(data,collection){
+    var filter = data.filter(function(topicFilter){
+        if(topicFilter.topic == collection){
+            return true
+        }else{
+            return false
+        }
+    })
+    return dataCollectionRender.push(filter)
+}
 
 //Change music on Mini List
 function changeMini() {
