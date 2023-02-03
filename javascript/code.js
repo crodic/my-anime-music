@@ -348,7 +348,10 @@ itemsPlay.forEach(function (items) {
         checkActiveMusic(newMusicList)
         listMusic.append(newMusicList)
 
+        var listMusicAfterAdd = document.querySelectorAll('.list-music .list list')
+        indexMusic = listMusicAfterAdd.length - 1
         changeMini()
+
         if (isPlay == true) {
             isPlay = false
         }
@@ -521,6 +524,8 @@ searchInput.addEventListener('keyup', function () {
             playMusicInSystemTitle.innerHTML = dataTitle
 
             checkPlay(dataImage)
+            var listMusicAfterAdd = document.querySelectorAll('.list-music .list list')
+            indexMusic = listMusicAfterAdd.length - 1
             changeMini()
         })
         if (isPlay == true) {
@@ -616,7 +621,18 @@ collectionList.forEach(function (collect) {
         crePlayList.innerHTML = finishRender
         playList.append(crePlayList)
         displayAlert(`Đã thêm Play List => ${dataCollection} <= vào danh sách phát. Vui lòng vào Danh sách kiểm tra`)
-        changeMini()
+
+        var srcInList = document.querySelectorAll('.list list')
+        srcInList.forEach(function (src, index) {
+            src.addEventListener('click', function () {
+                var src1 = this.querySelector('audio')
+                music.src = src1.src
+                indexMusic = index
+                checkActiveMusic(src)
+                checkPlay(src)
+            })
+        })
+
         if(isInfinity == false){
             infinity.click()
         }
@@ -686,8 +702,6 @@ function renderCollection(data,collection){
 
 //Change music on Mini List
 function changeMini() {
-    var listMusicAfterAdd = document.querySelectorAll('.list-music .list list')
-    indexMusic = listMusicAfterAdd.length - 1
     //Change music on List Mini
     var srcInList = document.querySelectorAll('.list list')
     srcInList.forEach(function (src, index) {
