@@ -215,6 +215,30 @@ var dataSearchCollection = [
         voice: 'Game OST'
     },
     {
+        collection: './images/collectionRezero.jpg',
+        topic: 'Re:zero',
+        srcMusic: './music/realize.mp3',
+        srcImg: './images/rezero.jpg',
+        title: 'Realize',
+        voice: 'Konomi Suzuki'
+    },
+    {
+        collection: './images/collection86.jpg',
+        topic: '86',
+        srcMusic: './music/avid.mp3',
+        srcImg: './images/avid.jpg',
+        title: 'Avid',
+        voice: 'Hiroyuki Sawano & Mizuki'
+    },
+    {
+        collection: './images/collection86.jpg',
+        topic: '86',
+        srcMusic: './music/SawanoHiroyukinZk.mp3',
+        srcImg: './images/aka86.jpg',
+        title: 'SawanoHiroyukinZk',
+        voice: 'Mizuki'
+    },
+    {
         collection: './images/honkai.jpg',
         topic: 'Azur Lane',
         srcMusic: './music/graphite.mp3',
