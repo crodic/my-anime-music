@@ -546,6 +546,17 @@ form#search .search-button {
     display: flex;
     justify-content: space-between;
 }
+.button-topic ul li{
+    animation: changeColor 3s infinite forwards;
+}
+@keyframes changeColor {
+    0%{
+        filter: hue-rotate(0deg);
+    }
+    100%{
+        filter: hue-rotate(360deg);
+    }
+}
 
 .check-all {
     cursor: pointer;
